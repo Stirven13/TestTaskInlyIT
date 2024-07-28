@@ -8,20 +8,26 @@ public class PlayerHealth : MonoBehaviour
     public Player player;
 
     Image healthBar;
-    // Start is called before the first frame update
+
     void Start()
     {
         healthBar = GetComponent<Image>();
+        if (player != null)
+        {
+            player.OnHealthChanged += UpdateUI;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDestroy()
     {
-        UpdateUI();
+        if (player != null)
+        {
+            player.OnHealthChanged -= UpdateUI;
+        }
     }
 
-    void UpdateUI()
+    void UpdateUI(float healthPercent)
     {
-        healthBar.fillAmount = player.HP / player.maxHP;
+        healthBar.fillAmount = healthPercent;
     }
 }

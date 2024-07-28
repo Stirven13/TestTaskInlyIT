@@ -24,7 +24,7 @@ public class HealthKitContact : MonoBehaviour
                 Player player = collision.gameObject.GetComponent<Player>();
                 if (player == null) { return; }
                 if (player.HP == player.maxHP) { return; }
-                player.Heal(10);
+                player.Heal(20);
                 Destroy(gameObject);
                 break;
         }
