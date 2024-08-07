@@ -12,20 +12,16 @@ public class TipsTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInside = true;
-            TipsManager.displayTipEvent?.Invoke(message);
-        }
+        if (other.GetComponent<Player>() == null) { return; }
+        isPlayerInside = true;
+        TipsManager.displayTipEvent?.Invoke(message);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInside = false;
-            TipsManager.disableTipEvent?.Invoke();
-        }
+        if (other.GetComponent<Player>() == null) { return; }
+        isPlayerInside = false;
+        TipsManager.disableTipEvent?.Invoke();
     }
 
     private void OnDestroy()

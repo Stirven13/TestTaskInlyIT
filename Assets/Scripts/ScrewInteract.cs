@@ -30,16 +30,11 @@ public class ScrewInteract : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case "Player":
-                Player player = collision.gameObject.GetComponent<Player>();
-                if (player == null) { return; }
-                if (!Input.GetKey(KeyCode.E)) { return; }
-                player.TakeDamage(50);
-                Destroy(gameObject);
-                break;
-        }
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player == null) { return; }
+        if (!player.IsUse()) { return; }
+        player.TakeDamage(50);
+        Destroy(gameObject);
     }
 
 }

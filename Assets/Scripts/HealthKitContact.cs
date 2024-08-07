@@ -18,15 +18,9 @@ public class HealthKitContact : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case "Player":
-                Player player = collision.gameObject.GetComponent<Player>();
-                if (player == null) { return; }
-                if (player.HP == player.maxHP) { return; }
-                player.Heal(20);
-                Destroy(gameObject);
-                break;
-        }
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player == null) { return; }
+        player.Heal(20);
+        Destroy(gameObject);
     }
 }

@@ -48,4 +48,9 @@ public class Player : MonoBehaviour
     {
         HP += amount;
     }
+
+    public bool IsUse()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }
